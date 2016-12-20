@@ -771,14 +771,18 @@ namespace SurvivorRyze
                          OktwCommon.GetIncomingDamage(target) +
                          Player.GetSummonerSpellDamage(target, Damage.SummonerSpell.Ignite)))
                         Player.Spellbook.CastSpell(IgniteSlot, target);
-                    if (Player.Mana >= Q.Instance.ManaCost + W.Instance.ManaCost + E.Instance.ManaCost)
+                    if (Player.Mana >= Q.Instance.ManaCost +  Q.Instance.ManaCost +  Q.Instance.ManaCost + W.Instance.ManaCost + E.Instance.ManaCost)
                     {
+                        if (CUseQ && target.IsValidTarget(Q.Range))
+                            SebbySpell(Q, target);
                         if (CUseW && target.IsValidTarget(W.Range) && W.IsReady())
                             W.CastOnUnit(target);
                         if (CUseQ && target.IsValidTarget(Q.Range))
                             SebbySpell(Q, target);
                         if (CUseE && target.IsValidTarget(E.Range) && E.IsReady())
                             E.CastOnUnit(target);
+                        if (CUseQ && target.IsValidTarget(Q.Range))
+                            SebbySpell(Q, target);
                     }
                     else
                     {
@@ -852,11 +856,18 @@ namespace SurvivorRyze
                         Player.Spellbook.CastSpell(IgniteSlot, target);
                     if (target.IsValidTarget(Q.Range) && Q.IsReady() && CUseQ)
                         SebbySpell(Q, target);
-                    if (target.IsValidTarget(W.Range) && W.IsReady() && CUseW)
-                        W.CastOnUnit(target);
                     if (target.IsValidTarget(E.Range) && E.IsReady() && CUseE)
                         E.CastOnUnit(target);
-
+                    if (target.IsValidTarget(Q.Range) && Q.IsReady() && CUseQ)
+                        SebbySpell(Q, target);
+                    if (target.IsValidTarget(W.Range) && W.IsReady() && CUseW)
+                        W.CastOnUnit(target);
+                    if (target.IsValidTarget(Q.Range) && Q.IsReady() && CUseQ)
+                        SebbySpell(Q, target);
+                    if (target.IsValidTarget(E.Range) && E.IsReady() && CUseE)
+                        E.CastOnUnit(target);
+                    if (target.IsValidTarget(Q.Range) && Q.IsReady() && CUseQ)
+                        SebbySpell(Q, target);
                     #endregion
                 }
                     break;
